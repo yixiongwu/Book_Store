@@ -1,4 +1,6 @@
+// Book model
 class Book {
+  // Book's constructor
   constructor(id, title, author, price) {
     if (id && typeof id === "number") {
       this.id = id;
@@ -14,6 +16,7 @@ class Book {
     }
   }
 
+  // Create a new book instance and copy field value from the input obj's field.
   static fromObject(obj) {
     if (obj) {
       let book = new Book(obj.id, obj.title, obj.author, obj.price);
@@ -23,4 +26,5 @@ class Book {
   }
 }
 
+// Export
 module.exports = { Book };
