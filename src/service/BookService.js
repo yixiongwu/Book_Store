@@ -19,7 +19,6 @@ class BookService {
   }
   // Get the book from the book list through the book's id, if it is not exist then return 404[not found]
   getById(id) {
-    console.log(typeof id !== "number");
     if (typeof id !== "number") {
       throw new Error("argument id error");
     }

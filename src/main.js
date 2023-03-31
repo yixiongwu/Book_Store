@@ -31,7 +31,9 @@ app.get("/getById/:id", (req, res) => {
   if (book) {
     res.json(book);
   }
-  res.status(404).send("Not found");
+  else{
+    res.status(404).send("Not found");
+  }
 });
 
 app.post("/create", (req, res) => {
