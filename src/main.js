@@ -30,8 +30,7 @@ app.get("/getById/:id", (req, res) => {
   let book = bookService.getById(id);
   if (book) {
     res.json(book);
-  }
-  else{
+  } else {
     res.status(404).send("Not found");
   }
 });
