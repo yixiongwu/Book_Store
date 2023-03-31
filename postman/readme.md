@@ -1,0 +1,1 @@
+We can import the `Book Store.postman_collection.json` into the Postman IDE for API test.
