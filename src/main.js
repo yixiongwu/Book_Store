@@ -30,8 +30,9 @@ app.get("/getById/:id", (req, res) => {
   let book = bookService.getById(id);
   if (book) {
     res.json(book);
+  } else {
+    res.status(404).send("Not found");
   }
-  res.status(404).send("Not found");
 });
 
 app.post("/create", (req, res) => {
