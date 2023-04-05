@@ -11,8 +11,9 @@ dotenv.config();
 
 const host = process.env.HOST;
 const port = process.env.PORT;
+const book_file_name = process.env.BOOK_FILE_NAME;
 
-let bookService = new BookService();
+let bookService = new BookService(book_file_name);
 
 console.log(`host=${host}, port=${port}`);
 
