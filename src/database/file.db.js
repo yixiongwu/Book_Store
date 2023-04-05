@@ -1,9 +1,6 @@
 "use strict";
 
 let fs = require("fs");
-const { BookService } = require("../service/BookService");
-
-const BookDataBase = "book.db.json";
 
 function readFile(fileName) {
   if (fs.existsSync(fileName)) {
@@ -59,4 +56,4 @@ function deleteById(fileName, id) {
   return false;
 }
 
-module.exports = { BookDataBase, getAll, getById, create, update, deleteById };
+module.exports = { getAll, getById, create, update, deleteById };
