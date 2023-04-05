@@ -11,9 +11,12 @@ dotenv.config();
 
 const host = process.env.HOST;
 const port = process.env.PORT;
-const book_file_name = process.env.BOOK_FILE_NAME;
+const book_store_name = process.env.BOOK_STORE_NAME;
+const redis_host = process.env.REDIS_HOST;
+const redis_port = process.env.REDIS_PORT;
 
-let bookService = new BookService(book_file_name);
+// let bookService = new BookService(book_store_name);
+let bookService = new BookService(book_store_name, redis_host, redis_port);
 
 console.log(`host=${host}, port=${port}`);
 
@@ -21,14 +24,14 @@ app.get("/", (req, res) => {
   res.send(`Book Store Service Online. Now is ${new Date().toLocaleString()}`);
 });
 
-app.get("/getAll", (_, res) => {
-  let bookList = bookService.getAll();
+app.get("/getAll", async (_, res) => {
+  let bookList = await bookService.getAll();
   res.json(bookList);
 });
 
-app.get("/getById/:id", (req, res) => {
+app.get("/getById/:id", async (req, res) => {
   let id = parseInt(req.params.id);
-  let book = bookService.getById(id);
+  let book = await bookService.getById(id);
   if (book) {
     res.json(book);
   } else {
@@ -36,22 +39,22 @@ app.get("/getById/:id", (req, res) => {
   }
 });
 
-app.post("/create", (req, res) => {
+app.post("/create", async (req, res) => {
   let book = Book.fromObject(req.body);
-  let result = bookService.create(book);
+  let result = await bookService.create(book);
   res.json(result);
 });
 
-app.post("/update/:id", (req, res) => {
+app.post("/update/:id", async (req, res) => {
   let id = parseInt(req.params.id);
   let book = Book.fromObject(req.body);
-  let result = bookService.update(id, book);
+  let result = await bookService.update(id, book);
   res.json(result);
 });
 
-app.get("/delete/:id", (req, res) => {
+app.get("/delete/:id", async (req, res) => {
   let id = parseInt(req.params.id);
-  let result = bookService.delete(id);
+  let result = await bookService.delete(id);
   res.json(result);
 });
 
