@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $.get("/api/getAll", null, function (bookList, status) {
+                for (let book of bookList) {
+                    $("#bookList").append(`<tr><td>${book.id}</td><td>${book.title}</td><td>${book.price}</td></tr>`)
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Book Store</h1>
+    <img src="cat.jpg" alt="cat"/>
+    <table id="bookList">
+        <th>
+        <td>Id</td>
+        <td>title</td>
+        <td>price</td>
+        </th>
+    </table>
+</body>
